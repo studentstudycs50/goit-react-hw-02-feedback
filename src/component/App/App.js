@@ -11,8 +11,8 @@ class App extends Component {
   bad: 0
     }
     onHandleClick = (event) => {
-        const key = event.target.dataset.name;
-        this.setState((prevState)=>({[key]: prevState[key] + 1}))
+        const {name} = event.target;
+        this.setState((prevState)=>({[name]: prevState[name] + 1}))
         
     }
     totalFeedbackCounter = () => {
@@ -21,18 +21,21 @@ class App extends Component {
 
     countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
-    return Math.round((good / this.totalFeedbackCounter()) * 100) || 0;
+        return Math.round((good / this.totalFeedbackCounter()) * 100) || 0;
+        
     };
     
+    options = Object.keys(this.state);
+
     render() {
-       const { good, neutral, bad } = this.state;
+        const { good, neutral, bad } = this.state;
+        
         return (
             <div>
                 <h2>Please leave feedback</h2>
                 <FeedbackOptions
-                    options={Object.keys(this.state)}
+                    options={this.options}
                     onHandleClick={this.onHandleClick} />
-
                 <Section title="Statistics"> 
             {this.totalFeedbackCounter() ? (
                     <Statistics
@@ -55,20 +58,4 @@ class App extends Component {
 
 export default App;
 
-// class App extends Component{
 
-
-// state = {
-//   good: 0,
-//   neutral: 0,
-//   bad: 0
-//     }
-
-//     render() {
-//         return (
-//           <div>component</div>
-//         );
-//     }
-// }
-
-// export default App;

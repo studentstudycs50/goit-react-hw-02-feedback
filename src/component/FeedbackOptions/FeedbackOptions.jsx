@@ -6,7 +6,7 @@ const FeedbackOptions = ({options, onHandleClick}) => {
         <button type="button"
         key={option}
         name={option}
-        onClick={onHandleClick} data-name="good">Good</button>
+        onClick={onHandleClick} >{option}</button>
     ))
     
 }
